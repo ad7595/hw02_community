@@ -21,11 +21,11 @@ class Post(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='posts'
-        )
+    )
     group = models.ForeignKey(
         Group,
         blank=True,
         null=True,
         on_delete=models.CASCADE,
         related_name='posts'
-     )
+    )
