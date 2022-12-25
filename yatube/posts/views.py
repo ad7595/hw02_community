@@ -10,7 +10,7 @@ def index(request):
     context = {
         'posts': posts,
         'title': title,
-        'text': text
+        'text': text,
     }
     return render(request, template, context)
 
