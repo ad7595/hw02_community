@@ -245,7 +245,7 @@ class TestGroupView:
             html,
         ), (
             'Отредактируйте HTML-шаблон, не найден автор публикации '
-            '`Автор: {{ полное_имя_автора_поста }},`'
+            '`Автор: {{ post.author.get_full_name }},`' 
         )
 
         base_template = get_template('base.html').template.source

@@ -7,15 +7,15 @@ User = get_user_model()
 
 class Group(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-    description = models.TextField()
+    slug = models.SlugField(max_length=200, unique=True)
+    description = models.TextField(max_length=400)
 
     def __str__(self) -> str:
         return self.title
 
 
 class Post(models.Model):
-    text = models.TextField()
+    text = models.TextField(max_length=400)
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
         User,

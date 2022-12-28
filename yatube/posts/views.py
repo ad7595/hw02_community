@@ -1,37 +1,25 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post, Group
+from django.shortcuts import get_object_or_404, render
+
+from .models import Group, Post
 
 
 def index(request):
+    """Выводим на страницу первые 10 записей постов."""
+
+    posts = Post.objects.select_related('author')[:10]
     template = 'posts/index.html'
-    title = 'Последние обновления на сайте'
-    text = 'Это главная страница проекта yatube'
-    posts = Post.objects.order_by('-pub_date')[:10]
-    context = {
-        'posts': posts,
-        'title': title,
-        'text': text,
-    }
+    context = {'posts': posts}
     return render(request, template, context)
 
 
 def group_posts(request, slug):
+    """Выводим на страницу первые 10 записей групп."""
+
     group = get_object_or_404(Group, slug=slug)
+    posts = group.posts.select_related('author')[:10]
     template = 'posts/group_list.html'
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
     context = {
         'group': group,
-        'posts': posts,
-    }
-    return render(request, template, context)
-
-
-def group_list(request):
-    template = 'posts/group_list.html'
-    title = 'Лев Толстой - зеркало русской революции'
-    text = 'Здесь будет информация о группах проекта Yatube'
-    context = {
-        'title': title,
-        'text': text,
+        'posts': posts
     }
     return render(request, template, context)
