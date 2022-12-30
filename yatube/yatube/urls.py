@@ -15,14 +15,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-# импорт include позволит использовать адреса, включенные в приложения
 from django.urls import path, include
 
 from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('posts.urls', namespace='index')),
-    path('group/<slug:slug>/', include('posts.urls', namespace='posts')),
     path('admin/', admin.site.urls),
+    path('', include('posts.urls', namespace='index')),
 ]

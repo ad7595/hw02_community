@@ -13,6 +13,8 @@ class Group(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    class Meta:
+        verbose_name_plural = 'Группы'
 
 class Post(models.Model):
     text = models.TextField(max_length=400)
@@ -26,6 +28,14 @@ class Post(models.Model):
         Group,
         blank=True,
         null=True,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name='posts'
     )
+
+    def __str__(self) -> str: 
+        return self.title 
+    
+    class Meta:
+        ordering = ['-pub_date']
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
