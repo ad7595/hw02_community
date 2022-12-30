@@ -16,6 +16,7 @@ class Group(models.Model):
     class Meta:
         verbose_name_plural = 'Группы'
 
+
 class Post(models.Model):
     text = models.TextField(max_length=400)
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -32,9 +33,9 @@ class Post(models.Model):
         related_name='posts'
     )
 
-    def __str__(self) -> str: 
-        return self.title 
-    
+    def __str__(self) -> str:
+        return self.title
+
     class Meta:
         ordering = ['-pub_date']
         verbose_name = 'Пост'
