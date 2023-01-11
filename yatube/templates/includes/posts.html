@@ -1,13 +1,16 @@
 {% load static %}
-{% for post in posts %} 
-<ul> 
-  <li> 
-    Автор публикации: {{ post.author.get_full_name }} 
-  </li> 
-  <li> 
-    Дата публикации: {{ post.pub_date|date:"d E Y" }} 
-  </li> 
-</ul> 
+<article>
+  <ul> 
+    <li> 
+      Автор: {{ post.author.get_full_name }} 
+    </li> 
+    <li> 
+      Дата публикации: {{ post.pub_date|date:"d E Y" }} 
+    </li>
+    {% if view_link and post.group  %}
+      <li><p><a href= "group/{{ post.group.slug }}">Ссылка на группу автора</a></p></li>
+    {% endif %} 
+  </ul> 
 <p>{{ post.text }}</p> 
+</article>
 {% if not forloop.last %}<hr>{% endif %} 
-{% endfor %} 

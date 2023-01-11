@@ -13,7 +13,10 @@ def index(request):
 
     posts = Post.objects.all()[:NUMBER_OF_POSTS]
     template = 'posts/index.html'
-    context = {'posts': posts}
+    context = {
+        'posts': posts,
+        'view_link': True
+    }
     return render(request, template, context)
 
 
